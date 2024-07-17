@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{81DFCF21-85A4-42A6-A550-2346E77AC2B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work360.Services.Notification.Api", "src\Work360.Services.Notification.Api\Work360.Services.Notification.Api.csproj", "{B664FBB0-FE16-4102-AB4F-3E377FE833CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work360.Services.Notification.Application", "src\Work360.Services.Notification.Application\Work360.Services.Notification.Application.csproj", "{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work360.Services.Notification.Core", "src\Work360.Services.Notification.Core\Work360.Services.Notification.Core.csproj", "{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work360.Services.Notification.Infrastructure", "src\Work360.Services.Notification.Infrastructure\Work360.Services.Notification.Infrastructure.csproj", "{A3B12A62-4216-4547-8E46-344C299FF930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B664FBB0-FE16-4102-AB4F-3E377FE833CC} = {81DFCF21-85A4-42A6-A550-2346E77AC2B7}
+		{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6} = {81DFCF21-85A4-42A6-A550-2346E77AC2B7}
+		{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033} = {81DFCF21-85A4-42A6-A550-2346E77AC2B7}
+		{A3B12A62-4216-4547-8E46-344C299FF930} = {81DFCF21-85A4-42A6-A550-2346E77AC2B7}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B664FBB0-FE16-4102-AB4F-3E377FE833CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B664FBB0-FE16-4102-AB4F-3E377FE833CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B664FBB0-FE16-4102-AB4F-3E377FE833CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B664FBB0-FE16-4102-AB4F-3E377FE833CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E9D33A-F7A8-47A7-8CC3-4BF8EEA897E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD33A03-FFD6-4865-B20F-7A4C5CCA3033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B12A62-4216-4547-8E46-344C299FF930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B12A62-4216-4547-8E46-344C299FF930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B12A62-4216-4547-8E46-344C299FF930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B12A62-4216-4547-8E46-344C299FF930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
