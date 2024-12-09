@@ -1,4 +1,5 @@
 using Work360.Services.Notification.Core.Events;
+using Work360.Services.Notification.Core.Exceptions;
 
 namespace Work360.Services.Notification.Core.Entities;
 
@@ -19,9 +20,18 @@ public class Notification : AggregateRoot
     
     public static Notification CreateNotification(string email, string title, string text)
     {
+        CheckEmail(email);
         var notification = new Notification(email, title, text);
         notification.AddEvent(new NotificationCreated(notification));
 
         return notification;
+    }
+
+    private static void CheckEmail(string email)
+    {
+        if (!email.Contains('@'))
+        {
+            throw new InvalidEmailException(email);
+        }
     }
 }
