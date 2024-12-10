@@ -12,6 +12,7 @@ public class Notification : AggregateRoot
 
     private Notification(string email, string title, string text)
     {
+        Id = Guid.NewGuid();
         Email = email;
         Text = text;
         Title = title;
