@@ -7,6 +7,7 @@ public class SendNotificationHandler : IRequestHandler<SendNotification, Guid>
 {
     public Task<Guid> Handle(SendNotification request, CancellationToken cancellationToken)
     {
+        //TODO: Move to SendService and use here ISendService
         var client = new SmtpClient("localhost");
 
         var mailMessage = new MailMessage
