@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Work360.Services.Notification.Application\Work360.Services.Notification.Application.csproj" />
+  </ItemGroup>
+
 </Project>
