@@ -1,31 +1,44 @@
+using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 using Work360.Services.Notification.Core.Repositories;
 
 namespace Work360.Services.Notification.Infrastructure.CosmosDb;
 
-public class NotificationRepository : INotificationRepository
+public class NotificationRepository(CosmosDbContext context) : INotificationRepository
 {
-    public Task<Core.Entities.Notification> GetNotification(Guid id)
+    public async Task<Core.Entities.Notification> GetNotification(Guid id)
     {
-        throw new NotImplementedException();
+        return await context.Container.ReadItemAsync<Core.Entities.Notification>(id.ToString(), new PartitionKey(id.ToString()));
     }
 
-    public Task<IEnumerable<Core.Entities.Notification>> GetNotifications()
+    public async Task<IEnumerable<Core.Entities.Notification>> GetNotifications()
     {
-        throw new NotImplementedException();
+        var iterator = context.Container.GetItemLinqQueryable<Core.Entities.Notification>().ToFeedIterator();
+        var notifications = new List<Core.Entities.Notification>();
+
+        while (iterator.HasMoreResults)
+        {
+            var response = await iterator.ReadNextAsync();
+            notifications.AddRange(response);
+        }
+
+        return notifications;
     }
 
-    public Task AddNotification(Core.Entities.Notification notification)
+    public async Task AddNotification(Core.Entities.Notification notification)
     {
-        throw new NotImplementedException();
+        await context.Container.CreateItemAsync(notification);
     }
 
-    public Task UpdateNotification(Core.Entities.Notification notification)
+    public async Task UpdateNotification(Core.Entities.Notification notification)
     {
-        throw new NotImplementedException();
+        await context.Container.ReplaceItemAsync(notification, notification.Id.ToString(),
+            new PartitionKey(notification.Id.ToString()));
     }
 
-    public Task DeleteNotification(Guid id)
+    public async Task DeleteNotification(Guid id)
     {
-        throw new NotImplementedException();
+        await context.Container.DeleteItemAsync<Core.Entities.Notification>(id.ToString(),
+            new PartitionKey(id.ToString()));
     }
 }
