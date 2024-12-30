@@ -29,13 +29,7 @@ public class NotificationRepository(CosmosDbContext context) : INotificationRepo
     {
         await context.Container.CreateItemAsync(notification);
     }
-
-    public async Task UpdateNotification(Core.Entities.Notification notification)
-    {
-        await context.Container.ReplaceItemAsync(notification, notification.Id.ToString(),
-            new PartitionKey(notification.Id.ToString()));
-    }
-
+    
     public async Task DeleteNotification(Guid id)
     {
         await context.Container.DeleteItemAsync<Core.Entities.Notification>(id.ToString(),
