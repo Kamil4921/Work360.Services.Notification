@@ -5,7 +5,7 @@ namespace Work360.Services.Notification.Infrastructure.Services;
 
 public class SendService : ISendService
 {
-    public Task SendEmail(Core.Entities.Notification notification)
+    public Task SendEmail(Core.Entities.Notification notification, string email)
     {
         var client = new SmtpClient("localhost");
 
@@ -16,7 +16,7 @@ public class SendService : ISendService
             Body = notification.Text,
             IsBodyHtml = true,
         };
-        mailMessage.To.Add(notification.Email);
+        mailMessage.To.Add(email);
         client.Send(mailMessage);
         
         return Task.CompletedTask;

@@ -7,7 +7,7 @@ public class SendNotificationHandler(ISendService sendService) : IRequestHandler
 {
     public async Task<Guid> Handle(SendNotification request, CancellationToken cancellationToken)
     {
-        await sendService.SendEmail(request.Notification);
+        await sendService.SendEmail(request.Notification, "");
 
         return request.Notification.Id;
     }
