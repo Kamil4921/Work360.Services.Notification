@@ -2,7 +2,8 @@ using Microsoft.Azure.Cosmos;
 
 namespace Work360.Services.Notification.Infrastructure.CosmosDb;
 
-public class CosmosDbContext(CosmosClient cosmosClient, string databaseName, string containerName)
+public class CosmosDbContext(CosmosClient cosmosClient, string databaseName)
 {
-    public Container Container { get; } = cosmosClient.GetContainer(databaseName, containerName);
+    public Container NotificationsContainer { get; } = cosmosClient.GetContainer(databaseName, "notifications");
+    public Container LeavesContainer { get; } = cosmosClient.GetContainer(databaseName, "leaves");
 }
