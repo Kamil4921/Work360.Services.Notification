@@ -1,11 +1,19 @@
 using MediatR;
+using Work360.Services.Notification.Application.Services;
+using Work360.Services.Notification.Core.Entities;
+using Work360.Services.Notification.Core.Repositories;
 
 namespace Work360.Services.Notification.Application.Commands.Handlers;
 
-public class CreateLeaveHandler(ILeaveRepository) : IRequestHandler<CreateLeave>
+public class CreateLeaveHandler(ILeaveRepository leaveRepository, IEventMapper eventMapper, IMessageBroker messageBroker) : IRequestHandler<CreateLeave>
 {
-    public Task Handle(CreateLeave request, CancellationToken cancellationToken)
+    public async Task Handle(CreateLeave request, CancellationToken cancellationToken)
     {
-        //TODO add entity and implementation
+        var leave = Leave.CreateLeave(request.Id, request.EmployeeFullName, request.LeaveStart, request.LeaveDuration);
+        var adding = leaveRepository.AddLeaveAsync(leave);
+        var events = eventMapper.MapAll(leave.Events);
+        var publishing = messageBroker.PublishAsync(events!);
+
+        await Task.WhenAll(adding, publishing);
     }
 }
