@@ -9,13 +9,12 @@ public class CreateNotificationHandler(INotificationRepository notificationRepos
     public async Task<Guid> Handle(CreateNotification request, CancellationToken cancellationToken)
     {
         var notification = Core.Entities.Notification.CreateNotification(request.Title, request.Text);
-        var send = mediator.Send(new SendNotification(notification));
+        var send = mediator.Send(new SendNotification(notification), cancellationToken);
         var adding = notificationRepository.AddNotification(notification);
         var events = eventMapper.MapAll(notification.Events);
         var publishing = messageBroker.PublishAsync(events!);
 
         await Task.WhenAll(adding, publishing, send);
-
         return notification.Id;
     }
 }
