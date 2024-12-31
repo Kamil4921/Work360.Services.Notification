@@ -30,5 +30,15 @@ app.MapGet("/notifications", async (ISender mediator) =>
     .WithOpenApi()
     .WithName("GetNotifications");
 
+app.MapGet("/leave", async (ISender mediator, Guid id) => 
+        await mediator.Send(new GetLeave(id)))
+    .WithOpenApi()
+    .WithName("GetLeave");
+
+app.MapGet("/leaves", async (ISender mediator) => 
+        await mediator.Send(new GetLeaves()))
+    .WithOpenApi()
+    .WithName("GetLeaves");
+
 app.Run();
 
