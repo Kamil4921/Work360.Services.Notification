@@ -23,7 +23,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/notification", async (ISender mediator, Guid id) => await mediator.Send(new GetNotification(id)))
     .WithOpenApi()
-    .WithName("GetNotifications");
+    .WithName("GetNotification");
 
 app.MapGet("/notifications", async (ISender mediator) => 
         await mediator.Send(new GetNotifications()))
