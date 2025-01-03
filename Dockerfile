@@ -7,10 +7,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Work360.Services.Notification/Work360.Services.Notification.Api.csproj", "Work360.Services.Notification/"]
-RUN dotnet restore "Work360.Services.Notification/Work360.Services.Notification.Api.csproj"
+COPY ["src/Work360.Services.Notification.Api/Work360.Services.Notification.Api.csproj", "src/Work360.Services.Notification.Api/"]
+RUN dotnet restore "src/Work360.Services.Notification.Api/Work360.Services.Notification.Api.csproj"
 COPY . .
-WORKDIR "/src/Work360.Services.Notification"
+WORKDIR "src/Work360.Services.Notification.Api"
 RUN dotnet build "Work360.Services.Notification.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
