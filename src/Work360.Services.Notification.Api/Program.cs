@@ -3,6 +3,7 @@ using Work360.Services.Notification.Application;
 using Work360.Services.Notification.Application.Commands;
 using Work360.Services.Notification.Application.Queries;
 using Work360.Services.Notification.Infrastructure;
+using Work360.Services.Notification.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+var serviceBusReceiver = app.Services.GetRequiredService<ServiceBusMessageReceiver>();
+await serviceBusReceiver.StartAsync();
 
 app.MapGet("/notification", async (ISender mediator, Guid id) => await mediator.Send(new GetNotification(id)))
     .WithOpenApi()
