@@ -15,7 +15,7 @@ public class GetLeaveHandler(ILeaveRepository leaveRepository) : IRequestHandler
             throw new LeaveNotFoundException(request.LeaveId);
         }
 
-        var leaveDto = new LeaveDto(leave);
+        var leaveDto = new LeaveDto(leave.Id, leave.EmployeeId, leave.LeaveStart, leave.LeaveDuration);
 
         return leaveDto;
     }

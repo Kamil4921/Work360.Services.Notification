@@ -10,7 +10,7 @@ public class GetLeavesHandler(ILeaveRepository leaveRepository) : IRequestHandle
     {
         var leaves = await leaveRepository.GetLeavesAsync();
         var leavesDto = leaves.Select(leave =>
-            new LeaveDto(leave)).ToList();
+            new LeaveDto(leave.Id, leave.EmployeeId, leave.LeaveStart, leave.LeaveDuration)).ToList();
 
         return leavesDto;
     }

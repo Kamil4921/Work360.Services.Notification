@@ -11,7 +11,7 @@ public class EventMapper : IEventMapper
     {
         return @event switch
         {
-            LeaveCreated e => new Application.Events.LeaveCreated(e.Leave.Id, e.Leave.EmployeeFullName, e.Leave.LeaveStart, e.Leave.LeaveDuration),
+            LeaveCreated e => new Application.Events.LeaveCreated(e.Leave.Id, e.Leave.EmployeeId, e.Leave.LeaveStart, e.Leave.LeaveDuration),
             NotificationCreated e => new Application.Events.NotificationCreated(e.Notification.Id),
             _ => null
         };

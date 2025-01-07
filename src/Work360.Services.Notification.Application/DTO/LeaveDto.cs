@@ -5,15 +5,15 @@ namespace Work360.Services.Notification.Application.DTO;
 public record LeaveDto
 {
     public Guid LeaveId { get; set; }
-    public string EmployeeFullName { get; set; }
+    public Guid EmployeeId { get; set; }
     public DateTime LeaveStart { get; set; }
     public int LeaveDuration { get; set; }
     
-    public LeaveDto(Leave leave)
+    public LeaveDto(Guid leaveId, Guid employeeId, DateTime leaveStart, int leaveDuration)
     {
-        LeaveId = leave.Id;
-        EmployeeFullName = leave.EmployeeFullName;
-        LeaveStart = leave.LeaveStart;
-        LeaveDuration = leave.LeaveDuration;
+        LeaveId = leaveId;
+        EmployeeId = employeeId;
+        LeaveStart = leaveStart;
+        LeaveDuration = leaveDuration;
     }
 }

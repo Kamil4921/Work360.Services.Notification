@@ -9,11 +9,11 @@ public class CreateLeaveHandler(ILeaveRepository leaveRepository, IEventMapper e
 {
     public async Task Handle(CreateLeave request, CancellationToken cancellationToken)
     {
-        var leave = Leave.CreateLeave(request.Id, request.EmployeeFullName, request.LeaveStart, request.LeaveDuration);
-        var adding = leaveRepository.AddLeaveAsync(leave);
+        var leave = Leave.CreateLeave(request.Id, request.EmployeeId, request.LeaveStart, request.LeaveDuration);
+        await leaveRepository.AddLeaveAsync(leave);
         var events = eventMapper.MapAll(leave.Events);
         var publishing = messageBroker.PublishAsync(events!);
 
-        await Task.WhenAll(adding, publishing);
+        await Task.WhenAll(publishing);
     }
 }
