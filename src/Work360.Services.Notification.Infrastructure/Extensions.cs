@@ -17,7 +17,7 @@ public static class Extensions
         services.AddTransient<ISendService, SendService>();
         services.AddTransient<INotificationRepository, NotificationRepository>();
         services.AddTransient<ILeaveRepository, LeaveRepository>();
-        services.AddSingleton<ServiceBusMessageReceiver>();
+        services.AddScoped<ServiceBusMessageReceiver>();
         
         services.AddScoped(sp => new CosmosDbContext(sp.GetRequiredService<CosmosClient>(), "work360-Notification"));
         
