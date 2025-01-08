@@ -7,7 +7,7 @@ public class Notification : AggregateRoot
     public string Title { get; set; } 
     public DateTime TimeStamp { get; set; }
 
-    private Notification(string title, string text)
+    public Notification(string title, string text)
     {
         Id = Guid.NewGuid();
         Text = text;

@@ -8,7 +8,7 @@ public class Leave : AggregateRoot
     public DateTime LeaveStart { get; }
     public int LeaveDuration { get; }
 
-    private Leave(Guid id, Guid employeeId, DateTime leaveStart, int leaveDuration)
+    public Leave(Guid id, Guid employeeId, DateTime leaveStart, int leaveDuration)
     {
         Id = id;
         EmployeeId = employeeId;
