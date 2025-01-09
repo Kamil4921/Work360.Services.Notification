@@ -1,7 +1,5 @@
-using Azure.Messaging.ServiceBus;
 using MediatR;
 using Work360.Services.Notification.Application;
-using Work360.Services.Notification.Application.Commands;
 using Work360.Services.Notification.Application.Queries;
 using Work360.Services.Notification.Infrastructure;
 using Work360.Services.Notification.Infrastructure.Services;
@@ -26,9 +24,6 @@ app.UseHttpsRedirection();
 var scope = app.Services.CreateScope();
 var scopedServiceBusReceiver = scope.ServiceProvider.GetRequiredService<ServiceBusMessageReceiver>();
 await scopedServiceBusReceiver.StartAsync();
-
-//var serviceBusReceiver = app.Services.GetRequiredService<ServiceBusMessageReceiver>();
-//await serviceBusReceiver.StartAsync();
 
 app.MapGet("/notification", async (ISender mediator, Guid id) => await mediator.Send(new GetNotification(id)))
     .WithOpenApi()

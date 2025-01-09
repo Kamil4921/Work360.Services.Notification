@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Work360.Services.Notification.Application.Commands;
 using Work360.Services.Notification.Application.DTO;
-using Work360.Services.Notification.Core.Entities;
 
 namespace Work360.Services.Notification.Infrastructure.Services;
 
@@ -28,7 +27,6 @@ public class ServiceBusMessageReceiver (ISender mediator, ILogger<ServiceBusMess
     private async Task MessageHandler(ProcessMessageEventArgs args)
     {
         var leave = JsonConvert.DeserializeObject<LeaveDto>(args.Message.Body.ToString())?? throw new ArgumentNullException();
-        //var leave = leaves.First();
         await mediator.Send(new CreateLeave(leave.LeaveId, leave.EmployeeId, leave.LeaveStart, leave.LeaveDuration));
         await mediator.Send(new CreateNotification($"{leave.EmployeeId} took leave from {leave.LeaveStart.Date} to {leave.LeaveStart.Date.AddDays(leave.LeaveDuration)}", $"{leave.EmployeeId} on leave"));
     }
