@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: work360-notification
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: work360-notification-deployment
+  namespace: work360-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: work360-notification
+  template:
+    metadata:
+      labels:
+        app: work360-notification
+    spec:
+      containers:
+        - name: work360-notification
+          image: kamil4921/work360-services-notification:TODO
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: work360-notification-service
+  namespace: work360-notification
+spec:
+  selector:
+    app: work360-notification
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8080
+  type: LoadBalancer
